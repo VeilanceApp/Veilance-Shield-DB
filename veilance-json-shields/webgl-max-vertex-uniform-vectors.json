@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-max-vertex-uniform-vectors",
+  "name": "Vertex uniform-vector cap",
+  "category": "WebGL capabilities",
+  "description": "Caps the reported vertex uniform-vector limit at a common value without ever overstating the device's actual capability.",
+  "surface": "WebGL capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "capability-query",
+    "detail": { "parameter": "MAX_VERTEX_UNIFORM_VECTORS" }
+  },
+  "protection": {
+    "strategy": "cap-number",
+    "parameters": { "maximum": 256 }
+  }
+}

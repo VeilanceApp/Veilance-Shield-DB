@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "audio-analyser-float-time-domain",
+  "name": "Audio waveform farbling",
+  "category": "Web Audio",
+  "description": "Applies tiny, session-consistent changes to selected floating-point waveform values returned through an analyser buffer.",
+  "surface": "Web Audio analyser",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "audio",
+    "api": "AnalyserNode",
+    "action": "get-float-time-domain-data"
+  },
+  "protection": {
+    "strategy": "float-array-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "epsilon": 0.0001
+    }
+  }
+}

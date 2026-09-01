@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "canvas-measure-text",
+  "name": "Canvas text-metric farbling",
+  "category": "Font measurement",
+  "description": "Applies a tiny, session-consistent offset to numeric Canvas text metrics used for font fingerprinting.",
+  "surface": "Canvas text metrics",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "font-probing",
+    "api": "Canvas2D",
+    "action": "measure-text"
+  },
+  "protection": {
+    "strategy": "text-metrics-farbling",
+    "parameters": {
+      "epsilon": 0.0001
+    }
+  }
+}

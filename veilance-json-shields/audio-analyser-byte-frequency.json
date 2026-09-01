@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "audio-analyser-byte-frequency",
+  "name": "Audio byte-frequency farbling",
+  "category": "Web Audio",
+  "description": "Applies small, session-consistent changes to selected byte-frequency values after an analyser copies them into the page's buffer.",
+  "surface": "Web Audio analyser",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "audio",
+    "api": "AnalyserNode",
+    "action": "get-byte-frequency-data"
+  },
+  "protection": {
+    "strategy": "typed-array-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "delta": 1
+    }
+  }
+}

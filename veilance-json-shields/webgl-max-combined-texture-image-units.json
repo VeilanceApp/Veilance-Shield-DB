@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-max-combined-texture-image-units",
+  "name": "Combined texture-unit cap",
+  "category": "WebGL capabilities",
+  "description": "Caps the reported combined texture-unit limit at a common value without ever overstating the device's actual capability.",
+  "surface": "WebGL capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "capability-query",
+    "detail": { "parameter": "MAX_COMBINED_TEXTURE_IMAGE_UNITS" }
+  },
+  "protection": {
+    "strategy": "cap-number",
+    "parameters": { "maximum": 32 }
+  }
+}

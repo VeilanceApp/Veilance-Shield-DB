@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-max-renderbuffer-size",
+  "name": "Renderbuffer-size cap",
+  "category": "WebGL capabilities",
+  "description": "Caps the reported renderbuffer size at a common value without ever overstating the device's actual capability.",
+  "surface": "WebGL capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "capability-query",
+    "detail": { "parameter": "MAX_RENDERBUFFER_SIZE" }
+  },
+  "protection": {
+    "strategy": "cap-number",
+    "parameters": { "maximum": 4096 }
+  }
+}

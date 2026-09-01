@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "audio-analyser-float-frequency",
+  "name": "Audio frequency-spectrum farbling",
+  "category": "Web Audio",
+  "description": "Applies tiny, session-consistent changes to selected floating-point frequency values returned through an analyser buffer.",
+  "surface": "Web Audio analyser",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "audio",
+    "api": "AnalyserNode",
+    "action": "get-float-frequency-data"
+  },
+  "protection": {
+    "strategy": "float-array-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "epsilon": 0.0001
+    }
+  }
+}

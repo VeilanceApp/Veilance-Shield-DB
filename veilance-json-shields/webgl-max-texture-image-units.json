@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-max-texture-image-units",
+  "name": "Fragment texture-unit cap",
+  "category": "WebGL capabilities",
+  "description": "Caps the reported fragment texture-unit limit at a common value without ever overstating the device's actual capability.",
+  "surface": "WebGL capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "capability-query",
+    "detail": { "parameter": "MAX_TEXTURE_IMAGE_UNITS" }
+  },
+  "protection": {
+    "strategy": "cap-number",
+    "parameters": { "maximum": 16 }
+  }
+}

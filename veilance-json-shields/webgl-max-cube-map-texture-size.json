@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-max-cube-map-texture-size",
+  "name": "Cube-map texture-size cap",
+  "category": "WebGL capabilities",
+  "description": "Caps the reported cube-map texture size at a common value without ever overstating the device's actual capability.",
+  "surface": "WebGL capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "capability-query",
+    "detail": { "parameter": "MAX_CUBE_MAP_TEXTURE_SIZE" }
+  },
+  "protection": {
+    "strategy": "cap-number",
+    "parameters": { "maximum": 2048 }
+  }
+}

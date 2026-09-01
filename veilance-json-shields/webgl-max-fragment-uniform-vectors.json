@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-max-fragment-uniform-vectors",
+  "name": "Fragment uniform-vector cap",
+  "category": "WebGL capabilities",
+  "description": "Caps the reported fragment uniform-vector limit at a common value without ever overstating the device's actual capability.",
+  "surface": "WebGL capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "capability-query",
+    "detail": { "parameter": "MAX_FRAGMENT_UNIFORM_VECTORS" }
+  },
+  "protection": {
+    "strategy": "cap-number",
+    "parameters": { "maximum": 224 }
+  }
+}

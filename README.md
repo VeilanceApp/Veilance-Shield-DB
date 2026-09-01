@@ -25,31 +25,6 @@ You can update the database without changing the extension when:
 
 A new extension release is still required when adding a completely new browser API hook or a new protection strategy.
 
-## Repository layout
-
-```text
-veilance-json-shields/       Individual production rules
-schema/shield-rule.schema.json
-scripts/validate-rules.mjs   Dependency-free repository validator
-.github/workflows/validate.yml
-```
-
-The extension reads JSON files only from `veilance-json-shields/`. Files elsewhere in the repository are ignored by the downloader.
-
-## Current rule pack
-
-The initial pack contains 15 rules covering:
-
-| Surface | Protected behavior |
-|---|---|
-| Canvas 2D | Pixel readback, data URL export, and blob export |
-| WebGL | Unmasked vendor, unmasked renderer, and pixel readback |
-| Web Audio | `getChannelData()` and `copyFromChannel()` readback |
-| Navigator | Logical processor count, device memory, and touch points |
-| Screen | Width, height, color depth, and device pixel ratio |
-
-Protection is session-consistent: farbling uses a page-session seed, so repeated reads within the same page receive consistent treatment while a later page session uses a different seed. Normalization and bucketing reduce exposed entropy by returning common values.
-
 ## Rule format
 
 One rule belongs in each `.json` file.
