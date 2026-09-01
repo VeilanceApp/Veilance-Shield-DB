@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "navigator-device-memory",
+  "name": "Device memory normalization",
+  "category": "Device characteristics",
+  "description": "Reports a common device-memory value instead of exposing the browser's original memory bucket.",
+  "surface": "Device memory",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "navigator-characteristics",
+    "api": "Navigator",
+    "action": "read-device-memory"
+  },
+  "protection": {
+    "strategy": "replace-number",
+    "parameters": {
+      "value": 4
+    }
+  }
+}

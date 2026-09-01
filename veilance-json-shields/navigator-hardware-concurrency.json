@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "navigator-hardware-concurrency",
+  "name": "CPU thread count bucketing",
+  "category": "Device characteristics",
+  "description": "Rounds the reported logical processor count to a common even value and caps unusually high values.",
+  "surface": "CPU characteristics",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "navigator-characteristics",
+    "api": "Navigator",
+    "action": "read-hardware-concurrency"
+  },
+  "protection": {
+    "strategy": "bucket-number",
+    "parameters": {
+      "step": 2,
+      "minimum": 2,
+      "maximum": 8,
+      "rounding": "nearest",
+      "preserveZero": false
+    }
+  }
+}

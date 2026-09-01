@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "audio-copy-from-channel",
+  "name": "Audio copy readback farbling",
+  "category": "Web Audio",
+  "description": "Applies very small, deterministic changes after audio samples are copied into a page-provided buffer.",
+  "surface": "Web Audio",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "audio",
+    "api": "AudioBuffer",
+    "action": "copy-from-channel"
+  },
+  "protection": {
+    "strategy": "float-array-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "epsilon": 0.0000001
+    }
+  }
+}

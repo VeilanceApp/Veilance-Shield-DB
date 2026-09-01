@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "navigator-max-touch-points",
+  "name": "Touch-point normalization",
+  "category": "Device characteristics",
+  "description": "Preserves whether touch is available while replacing the exact positive touch-point count with a common value.",
+  "surface": "Touch capabilities",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "navigator-characteristics",
+    "api": "Navigator",
+    "action": "read-max-touch-points"
+  },
+  "protection": {
+    "strategy": "binary-number",
+    "parameters": {
+      "zeroValue": 0,
+      "nonZeroValue": 5
+    }
+  }
+}

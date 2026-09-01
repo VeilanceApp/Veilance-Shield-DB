@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "canvas-get-image-data",
+  "name": "Canvas pixel readback farbling",
+  "category": "Canvas",
+  "description": "Changes a small, deterministic set of invisible color-channel values when a page reads Canvas 2D pixels.",
+  "surface": "Canvas 2D",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "canvas",
+    "api": "Canvas",
+    "action": "readback"
+  },
+  "protection": {
+    "strategy": "canvas-pixel-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "delta": 1
+    }
+  }
+}

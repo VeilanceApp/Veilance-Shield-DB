@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-unmasked-vendor",
+  "name": "WebGL vendor normalization",
+  "category": "WebGL",
+  "description": "Returns a generic WebGL vendor value when a page requests the unmasked graphics vendor.",
+  "surface": "WebGL vendor",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "renderer-query",
+    "detail": {
+      "parameter": "UNMASKED_VENDOR_WEBGL"
+    }
+  },
+  "protection": {
+    "strategy": "replace-string",
+    "parameters": {
+      "value": "Google Inc. (Google)"
+    }
+  }
+}

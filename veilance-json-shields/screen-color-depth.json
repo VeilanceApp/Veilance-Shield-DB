@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "screen-color-depth",
+  "name": "Color-depth normalization",
+  "category": "Screen characteristics",
+  "description": "Reports a common 24-bit color depth for both colorDepth and pixelDepth reads.",
+  "surface": "Display color depth",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "screen-characteristics",
+    "api": "Screen",
+    "actions": [
+      "read-color-depth",
+      "read-pixel-depth"
+    ]
+  },
+  "protection": {
+    "strategy": "replace-number",
+    "parameters": {
+      "value": 24
+    }
+  }
+}

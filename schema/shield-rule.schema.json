@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://veilance.org/schemas/shield-rule.v1.json",
+  "title": "Veilance Shield rule v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "description",
+    "surface",
+    "match",
+    "protection"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "category": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 400 },
+    "surface": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "defaultEnabled": { "type": "boolean" },
+    "match": { "$ref": "#/$defs/match" },
+    "protection": { "$ref": "#/$defs/protection" }
+  },
+  "$defs": {
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["indicatorId", "api"],
+      "properties": {
+        "indicatorId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "api": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "action": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "detail": {
+          "type": "object",
+          "maxProperties": 8,
+          "propertyNames": { "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+          "additionalProperties": {
+            "type": ["string", "number", "boolean"]
+          }
+        }
+      },
+      "oneOf": [
+        { "required": ["action"], "not": { "required": ["actions"] } },
+        { "required": ["actions"], "not": { "required": ["action"] } }
+      ]
+    },
+    "protection": {
+      "oneOf": [
+        { "$ref": "#/$defs/integerFarbling" },
+        { "$ref": "#/$defs/floatFarbling" },
+        { "$ref": "#/$defs/bucketNumber" },
+        { "$ref": "#/$defs/replaceNumber" },
+        { "$ref": "#/$defs/binaryNumber" },
+        { "$ref": "#/$defs/replaceString" }
+      ]
+    },
+    "integerFarbling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "parameters"],
+      "properties": {
+        "strategy": {
+          "enum": ["canvas-pixel-farbling", "typed-array-farbling"]
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["maximumEdits", "delta"],
+          "properties": {
+            "maximumEdits": { "type": "integer", "minimum": 1, "maximum": 64 },
+            "delta": { "type": "integer", "minimum": 1, "maximum": 8 }
+          }
+        }
+      }
+    },
+    "floatFarbling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "parameters"],
+      "properties": {
+        "strategy": { "const": "float-array-farbling" },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["maximumEdits", "epsilon"],
+          "properties": {
+            "maximumEdits": { "type": "integer", "minimum": 1, "maximum": 64 },
+            "epsilon": { "type": "number", "minimum": 0.000000001, "maximum": 0.001 }
+          }
+        }
+      }
+    },
+    "bucketNumber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "parameters"],
+      "properties": {
+        "strategy": { "const": "bucket-number" },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["step", "minimum", "maximum", "rounding", "preserveZero"],
+          "properties": {
+            "step": { "type": "number", "minimum": 0.01, "maximum": 10000 },
+            "minimum": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+            "maximum": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+            "rounding": { "enum": ["nearest", "floor", "ceil"] },
+            "preserveZero": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "replaceNumber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "parameters"],
+      "properties": {
+        "strategy": { "const": "replace-number" },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["value"],
+          "properties": {
+            "value": { "type": "number", "minimum": -1000000, "maximum": 1000000 }
+          }
+        }
+      }
+    },
+    "binaryNumber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "parameters"],
+      "properties": {
+        "strategy": { "const": "binary-number" },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["zeroValue", "nonZeroValue"],
+          "properties": {
+            "zeroValue": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+            "nonZeroValue": { "type": "number", "minimum": -1000000, "maximum": 1000000 }
+          }
+        }
+      }
+    },
+    "replaceString": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "parameters"],
+      "properties": {
+        "strategy": { "const": "replace-string" },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["value"],
+          "properties": {
+            "value": { "type": "string", "minLength": 1, "maxLength": 160 }
+          }
+        }
+      }
+    }
+  }
+}

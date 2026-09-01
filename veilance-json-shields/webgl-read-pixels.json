@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "webgl-read-pixels",
+  "name": "WebGL pixel readback farbling",
+  "category": "WebGL",
+  "description": "Changes a small, deterministic set of values after WebGL pixels are copied into a page-provided typed array.",
+  "surface": "WebGL pixels",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "webgl",
+    "api": "WebGL",
+    "action": "read-pixels"
+  },
+  "protection": {
+    "strategy": "typed-array-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "delta": 1
+    }
+  }
+}

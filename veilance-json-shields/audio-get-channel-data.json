@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "audio-get-channel-data",
+  "name": "Audio channel readback farbling",
+  "category": "Web Audio",
+  "description": "Returns a protected copy of audio channel samples with very small, deterministic changes to selected values.",
+  "surface": "Web Audio",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "audio",
+    "api": "AudioBuffer",
+    "action": "get-channel-data"
+  },
+  "protection": {
+    "strategy": "float-array-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "epsilon": 0.0000001
+    }
+  }
+}

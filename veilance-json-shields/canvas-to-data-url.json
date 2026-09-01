@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "canvas-to-data-url",
+  "name": "Canvas data URL export farbling",
+  "category": "Canvas",
+  "description": "Exports a protected copy of a canvas with a small, deterministic pixel perturbation instead of exporting the original fingerprint surface.",
+  "surface": "Canvas export",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "canvas",
+    "api": "Canvas",
+    "action": "export-data-url"
+  },
+  "protection": {
+    "strategy": "canvas-pixel-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "delta": 1
+    }
+  }
+}

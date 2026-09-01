@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "window-device-pixel-ratio",
+  "name": "Device-pixel-ratio bucketing",
+  "category": "Screen characteristics",
+  "description": "Rounds the reported device pixel ratio to a common quarter-step value and caps unusually high ratios.",
+  "surface": "Display pixel ratio",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "screen-characteristics",
+    "api": "Screen",
+    "action": "read-device-pixel-ratio"
+  },
+  "protection": {
+    "strategy": "bucket-number",
+    "parameters": {
+      "step": 0.25,
+      "minimum": 1,
+      "maximum": 3,
+      "rounding": "nearest",
+      "preserveZero": false
+    }
+  }
+}

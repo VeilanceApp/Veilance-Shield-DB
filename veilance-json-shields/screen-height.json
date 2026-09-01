@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "screen-height",
+  "name": "Screen height bucketing",
+  "category": "Screen characteristics",
+  "description": "Rounds screen and available-screen height values to the nearest 100 CSS pixels within a compatibility-safe range.",
+  "surface": "Screen geometry",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "screen-characteristics",
+    "api": "Screen",
+    "actions": [
+      "read-height",
+      "read-avail-height"
+    ]
+  },
+  "protection": {
+    "strategy": "bucket-number",
+    "parameters": {
+      "step": 100,
+      "minimum": 320,
+      "maximum": 2160,
+      "rounding": "nearest",
+      "preserveZero": true
+    }
+  }
+}

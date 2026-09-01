@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "canvas-to-blob",
+  "name": "Canvas blob export farbling",
+  "category": "Canvas",
+  "description": "Creates canvas blobs from a protected copy containing a small, deterministic pixel perturbation.",
+  "surface": "Canvas export",
+  "defaultEnabled": true,
+  "match": {
+    "indicatorId": "canvas",
+    "api": "Canvas",
+    "action": "export-blob"
+  },
+  "protection": {
+    "strategy": "canvas-pixel-farbling",
+    "parameters": {
+      "maximumEdits": 8,
+      "delta": 1
+    }
+  }
+}
